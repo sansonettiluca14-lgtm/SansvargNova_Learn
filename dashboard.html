@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaLearn Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+        <div class="container">
+            <span class="brand">Sansvarg NovaLearn</span>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="dashboard.html">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= DASHBOARD HERO ================= -->
+    <section class="dashboard-banner">
+        <h1>Welcome to Your Dashboard</h1>
+        <p>Premium Access Unlocked! Explore your AI rewards and track your progress.</p>
+    </section>
+
+    <!-- ================= REWARDS GRID ================= -->
+    <section class="dashboard-grid">
+        <div class="reward-card">
+            <h3>AI Personalized Plan</h3>
+            <p>Receive a custom learning plan based on your progress and performance.</p>
+        </div>
+        <div class="reward-card">
+            <h3>Daily Challenges</h3>
+            <p>Complete daily exercises to earn points and unlock exclusive content.</p>
+        </div>
+        <div class="reward-card">
+            <h3>Level-Up Badges</h3>
+            <p>Earn badges as you complete modules and reach new skill levels.</p>
+        </div>
+        <div class="reward-card">
+            <h3>Leaderboards</h3>
+            <p>Compete globally and see your ranking among all learners on NovaLearn.</p>
+        </div>
+        <div class="reward-card">
+            <h3>Progress Tracker</h3>
+            <p>Visual dashboards to monitor your improvement and achievements over time.</p>
+        </div>
+        <div class="reward-card">
+            <h3>Exclusive Content</h3>
+            <p>Access premium tutorials, exercises, and AI-generated learning material.</p>
+        </div>
+        <div class="reward-card">
+            <h3>Community Challenges</h3>
+            <p>Join weekly global contests to compete and learn with others.</p>
+        </div>
+        <div class="reward-card">
+            <h3>Priority Support</h3>
+            <p>Get fast support for any platform issues or account questions.</p>
+        </div>
+    </section>
+
+    <!-- ================= DASHBOARD CTA ================= -->
+    <section class="hero">
+        <h2>Keep Learning & Unlock Rewards!</h2>
+        <p>Complete more challenges, track your stats, and level up your learning experience.</p>
+        <button class="btn" id="logoutBtn">Logout / Reset</button>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="features">
+        <h2>Dashboard FAQ</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>How do I earn points?</h3>
+                <p>Points are earned by completing exercises, daily challenges, and community contests.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Can I reset my progress?</h3>
+                <p>Yes, click the "Logout / Reset" button above to clear local progress and start fresh.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Are badges tracked?</h3>
+                <p>All earned badges appear on your dashboard and reflect your skill progression.</p>
+            </div>
+            <div class="feature-card">
+                <h3>How do I access exclusive content?</h3>
+                <p>Premium members automatically unlock access to exclusive tutorials and AI-generated lessons.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <p>© 2025 Sansvarg NovaLearn. All rights reserved.</p>
+        <p>
+            <a href="index.html">Home</a> | 
+            <a href="pricing.html">Pricing</a> | 
+            <a href="dashboard.html">Dashboard</a>
+        </p>
+    </footer>
+
+    <!-- ================= DASHBOARD SCRIPT ================= -->
+    <script>
+        // Simple logout/reset button functionality
+        const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', () => {
+            if(confirm("Do you want to logout and reset progress?")) {
+                localStorage.clear();
+                alert("Progress cleared! Redirecting to homepage.");
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+
+</body>
+</html>
