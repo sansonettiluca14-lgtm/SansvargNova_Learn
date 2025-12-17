@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaLearn Features & Games</title>
+<style>
+body {font-family:Arial,sans-serif;background:#f9f9f9;margin:0;color:#333;}
+.container{width:90%;max-width:1000px;margin:auto;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-bottom:2rem;}
+.feature-card,.game-card,.flashcard{background:#fff;padding:1rem;border-radius:8px;box-shadow:0 0 8px rgba(0,0,0,0.1);text-align:center;}
+.flashcards{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;}
+.flashcard{cursor:pointer;flex:1 1 200px;}
+.flashcard-answer{display:none;color:#ff6600;font-weight:bold;margin-top:0.5rem;}
+#human-verify{display:none;padding:2rem;background:#fffae6;border:2px dashed #ff6600;text-align:center;margin-bottom:2rem;}
+#dashboard{display:none;padding:2rem;background:#e6f7ff;border-radius:8px;}
+.btn{padding:0.5rem 1rem;background:#ff6600;color:#fff;border:none;border-radius:5px;cursor:pointer;}
+.btn:hover{background:#e65500;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h2>Premium Features & Mini-Games</h2>
+
+<!-- HUMAN VERIFICATION -->
+<section id="human-verify">
+  <h3>Verify You Are Human</h3>
+  <p>Solve the challenge to unlock your games and flashcards.</p>
+  <p id="challenge-text"></p>
+  <input type="text" id="challenge-answer" placeholder="Type your answer"/>
+  <button id="verifyBtn" class="btn">Verify</button>
+  <p id="verify-msg" style="color:red;"></p>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard">
+  <h3>Mini-Games</h3>
+  <div class="features-grid">
+    <div class="game-card">
+      <h4>Math Puzzle</h4>
+      <p>Solve random addition problems.</p>
+    </div>
+    <div class="game-card">
+      <h4>Word Scramble</h4>
+      <p>Unscramble letters to form words.</p>
+    </div>
+    <div class="game-card">
+      <h4>Click Challenge</h4>
+      <p>Click the moving button fast!</p>
+      <button id="clickBtn" class="btn">Click Me!</button>
+      <p>Score: <span id="clickScore">0</span></p>
+    </div>
+  </div>
+
+  <h3>Flashcards (Premium)</h3>
+  <div class="flashcards">
+    <div class="flashcard">
+      <p>What is the capital of France?</p>
+      <p class="flashcard-answer">Paris</p>
+    </div>
+    <div class="flashcard">
+      <p>2 + 3 = ?</p>
+      <p class="flashcard-answer">5</p>
+    </div>
+    <div class="flashcard">
+      <p>HTML stands for?</p>
+      <p class="flashcard-answer">HyperText Markup Language</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+// ===== HUMAN VERIFY =====
+let correctAnswer=0;
+function generateChallenge(){
+  const a=Math.floor(Math.random()*10)+1;
+  const b=Math.floor(Math.random()*10)+1;
+  correctAnswer=a+b;
+  document.getElementById('challenge-text').innerText=`What is ${a} + ${b}?`;
+}
+function showHumanVerify(){ 
+  document.getElementById('human-verify').style.display='block'; 
+  generateChallenge(); 
+}
+
+document.getElementById('verifyBtn').addEventListener('click',()=>{
+  const userAnswer=parseInt(document.getElementById('challenge-answer').value);
+  if(userAnswer===correctAnswer){
+    document.getElementById('dashboard').style.display='block';
+    document.getElementById('human-verify').style.display='none';
+  } else {
+    document.getElementById('verify-msg').innerText="Incorrect, try again!";
+    generateChallenge();
+  }
+});
+
+// Automatically show human verify for demo
+showHumanVerify();
+
+// ===== FLASHCARDS LOGIC =====
+document.querySelectorAll('.flashcard').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const answer=card.querySelector('.flashcard-answer');
+    if(answer.style.display==='none'){ answer.style.display='block'; }
+    else{ answer.style.display='none'; }
+  });
+});
+
+// ===== CLICK CHALLENGE =====
+let clickScore=0;
+document.getElementById('clickBtn').addEventListener('click',()=>{
+  clickScore++;
+  document.getElementById('clickScore').innerText=clickScore;
+});
+</script>
+</body>
+</html>
