@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sansvarg NovaLearn Mega Platform</title>
+<style>
+/* ====== Basic CSS for mega file ====== */
+body {margin:0;font-family:Arial,sans-serif;color:#333;background:#f9f9f9;}
+.container{width:90%;max-width:1200px;margin:auto;}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:1rem;background:#111;color:#fff;}
+.nav-links a{color:#fff;text-decoration:none;margin-left:1rem;}
+.nav-links a:hover{text-decoration:underline;}
+.hero{padding:3rem 1rem;text-align:center;background:#222;color:#fff;}
+.hero h1{font-size:2.5rem;margin-bottom:1rem;}
+.hero p{font-size:1.2rem;margin-bottom:1.5rem;}
+.btn{padding:0.7rem 1.5rem;font-size:1rem;background:#ff6600;color:#fff;border:none;cursor:pointer;border-radius:5px;}
+.btn:hover{background:#e65500;}
+.features{padding:2rem 1rem;background:#fff;margin-bottom:2rem;}
+.features h2{text-align:center;margin-bottom:2rem;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.feature-card{padding:1rem;background:#f4f4f4;border-radius:8px;box-shadow:0 0 8px rgba(0,0,0,0.05);}
+input,textarea{width:100%;padding:0.5rem;margin:0.5rem 0;border-radius:5px;border:1px solid #ccc;}
+footer{padding:2rem;text-align:center;background:#222;color:#fff;font-size:0.9rem;}
+footer a{color:#ff6600;text-decoration:none;margin:0 0.5rem;}
+footer a:hover{text-decoration:underline;}
+#human-verify{padding:2rem;background:#fffae6;text-align:center;border:2px dashed #ff6600;margin:2rem;}
+</style>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAkG-FXxYga_FNSogVneiRPidsy1Xyx_5-isM0kwA7ygPTSXyYH3HxxQ9H0RcW_JLdAV25pUyDiR0F4Bw&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <span class="brand">Sansvarg NovaLearn</span>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <h1>Learn. Compete. Level Up.</h1>
+  <p>AI-powered gamified learning platform that makes mastering skills fun and rewarding.</p>
+  <button class="btn" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'});">Upgrade Now</button>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <h2>Why Choose NovaLearn?</h2>
+  <div class="features-grid">
+    <div class="feature-card"><h3>Gamified Learning</h3><p>Complete challenges and earn points while progressing through AI-guided modules.</p></div>
+    <div class="feature-card"><h3>Personal AI Insights</h3><p>Track your performance with smart analytics and personalized suggestions.</p></div>
+    <div class="feature-card"><h3>Flexible Access</h3><p>Subscribe monthly or use promo codes to unlock premium features for testing.</p></div>
+    <div class="feature-card"><h3>Multi-Device Friendly</h3><p>Access NovaLearn seamlessly on desktop, tablet, or mobile without losing progress.</p></div>
+    <div class="feature-card"><h3>Community Challenges</h3><p>Join weekly contests and compete with learners worldwide to level up faster.</p></div>
+    <div class="feature-card"><h3>Track Progress</h3><p>Visual dashboards show your improvement and areas to focus on for maximum efficiency.</p></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="features" id="how-it-works">
+  <h2>How It Works</h2>
+  <div class="features-grid">
+    <div class="feature-card"><h3>Step 1: Sign Up</h3><p>Create your free account and explore available AI modules.</p></div>
+    <div class="feature-card"><h3>Step 2: Upgrade</h3><p>Purchase monthly premium access via PayPal or use promo code TEST123 to unlock features.</p></div>
+    <div class="feature-card"><h3>Step 3: Learn & Earn</h3><p>Complete exercises, challenges, and daily tasks to earn points and rewards.</p></div>
+    <div class="feature-card"><h3>Step 4: Level Up</h3><p>Reach new skill levels, track improvement, and unlock new AI-guided learning paths.</p></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="features" id="pricing">
+  <h2>Premium Access</h2>
+  <div class="feature-card">
+    <h3>Monthly Premium</h3>
+    <p>$19 per month (select quantity for multiple months)</p>
+    <label>Select months:</label>
+    <input type="number" id="months" min="1" value="1">
+    <label>Promo Code:</label>
+    <input type="text" id="promo" placeholder="Enter code">
+    <p id="promo-msg" style="color:green;font-weight:bold;"></p>
+    <div id="paypal-container"></div>
+    <p>Use promo code <strong>TEST123</strong> to unlock all features for free.</p>
+  </div>
+</section>
+
+<!-- HUMAN VERIFY -->
+<section id="human-verify" style="display:none;">
+  <h2>Verify You Are Human</h2>
+  <p>Solve the challenge to unlock your premium rewards.</p>
+  <p id="challenge-text"></p>
+  <input type="text" id="challenge-answer" placeholder="Type your answer"/>
+  <button id="verifyBtn" class="btn">Verify</button>
+  <p id="verify-msg" style="color:red;"></p>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<section class="features" id="dashboard">
+  <h2>Your Dashboard</h2>
+  <div class="features-grid">
+    <div class="feature-card"><h3>AI Personalized Plan</h3><p>Receive a custom learning plan based on your progress.</p></div>
+    <div class="feature-card"><h3>Daily Challenges</h3><p>Complete daily exercises to earn points and unlock content.</p></div>
+    <div class="feature-card"><h3>Level-Up Badges</h3><p>Earn badges as you complete modules and reach new skill levels.</p></div>
+    <div class="feature-card"><h3>Leaderboards</h3><p>Compete globally and see your ranking among all learners.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="features" id="testimonials">
+  <h2>What Learners Say</h2>
+  <div class="features-grid">
+    <div class="feature-card"><h3>Alex R.</h3><p>"AI insights and challenges keep me motivated daily."</p></div>
+    <div class="feature-card"><h3>Sophia L.</h3><p>"The platform is intuitive and fun. I love the rewards system."</p></div>
+    <div class="feature-card"><h3>Michael K.</h3><p>"The dashboard helps me see exactly what to focus on."</p></div>
+    <div class="feature-card"><h3>Emma W.</h3><p>"Promo code TEST123 allowed me to test everything premium."</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="features" id="faq">
+  <h2>FAQ</h2>
+  <div class="features-grid">
+    <div class="feature-card"><h3>How do I unlock premium?</h3><p>Purchase via PayPal or enter TEST123 for testing.</p></div>
+    <div class="feature-card"><h3>Is it mobile-friendly?</h3><p>Yes, fully responsive and works on all devices.</p></div>
+    <div class="feature-card"><h3>Are points tracked?</h3><p>Progress and points are saved locally in your browser.</p></div>
+    <div class="feature-card"><h3>How does TEST123 work?</h3><p>It unlocks all premium features instantly for testing purposes.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="hero">
+  <h2>Join NovaLearn Today</h2>
+  <p>Experience AI-powered learning, unlock rewards, and achieve your goals faster.</p>
+  <button class="btn" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'});">Upgrade Now</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Sansvarg NovaLearn. All rights reserved.</p>
+  <p>
+    <a href="#home">Home</a> | 
+    <a href="#features">Features</a> | 
+    <a href="#how-it-works">How It Works</a> | 
+    <a href="#pricing">Pricing</a> | 
+    <a href="#dashboard">Dashboard</a> | 
+    <a href="#faq">FAQ</a>
+  </p>
+</footer>
+
+<script>
+/* ===== PAYPAL + PROMO LOGIC ===== */
+const promoInput=document.getElementById('promo');
+const promoMsg=document.getElementById('promo-msg');
+const monthsInput=document.getElementById('months');
+
+function applyPromo(){
+    if(promoInput.value.toUpperCase()==='TEST123'){
+        promoMsg.textContent='Promo code applied! All months are free.';
+        return true;
+    } else {promoMsg.textContent=''; return false;}
+}
+
+promoInput.addEventListener('input',applyPromo);
+
+paypal.HostedButtons({
+    hostedButtonId:"PE44VKVGLWKFA",
+    onClick:function(data,actions){
+        if(applyPromo()){
+            alert('Promo code applied! Unlocking rewards...');
+            showHumanVerify();
+            return actions.reject();
+        }
+    },
+    onApprove:function(data,actions){
+        showHumanVerify();
+    }
+}).render('#paypal-container');
+
+/* ===== HUMAN VERIFY ===== */
+function showHumanVerify(){
+    document.getElementById('human-verify').style.display='block';
+    generateChallenge();
+}
+
+let correctAnswer=0;
+function generateChallenge(){
+    const a=Math.floor(Math.random()*10)+1;
+    const b=Math.floor(Math.random()*10)+1;
+    correctAnswer=a+b;
+    document.getElementById('challenge-text').innerText=`What is ${a} + ${b}?`;
+}
+
+document.getElementById('verifyBtn').addEventListener('click',()=>{
+    const userAnswer=parseInt(document.getElementById('challenge-answer').value);
+    if(userAnswer===correctAnswer){
+        alert('Verification passed! Unlocking dashboard...');
+        window.location.href='#dashboard';
+    } else {
+        document.getElementById('verify-msg').innerText="Incorrect answer, try again!";
+        generateChallenge();
+    }
+});
+</script>
+
+</body>
+</html>
