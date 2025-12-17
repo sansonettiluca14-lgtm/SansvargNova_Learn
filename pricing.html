@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaLearn Premium - Pricing</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ================= PAYPAL SDK ================= -->
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAkG-FXxYga_FNSogVneiRPidsy1Xyx_5-isM0kwA7ygPTSXyYH3HxxQ9H0RcW_JLdAV25pUyDiR0F4Bw&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+        <div class="container">
+            <span class="brand">Sansvarg NovaLearn</span>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="dashboard.html">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <h1>Upgrade to Premium</h1>
+        <p>Unlock all AI rewards, progress tracking, and gamified features with premium access.</p>
+    </section>
+
+    <!-- ================= PRICING CARD ================= -->
+    <section class="features">
+        <div class="pricing-card">
+            <h2>Monthly Premium</h2>
+            <p>$19 per month (select quantity for multiple months)</p>
+
+            <label for="months">Select months:</label>
+            <input type="number" id="months" min="1" value="1">
+
+            <label for="promo">Promo Code:</label>
+            <input type="text" id="promo" placeholder="Enter code">
+
+            <p id="promo-msg" style="color:green; font-weight:bold;"></p>
+
+            <!-- PAYPAL BUTTON CONTAINER -->
+            <div id="paypal-container"></div>
+
+            <p style="margin-top:15px; font-size:14px;">
+                Use promo code <strong>TEST123</strong> to unlock all premium features for free.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================= HOW TO PAY ================= -->
+    <section class="features">
+        <h2>How Payment Works</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Step 1: Select Months</h3>
+                <p>Use the input above to select how many months you want to subscribe for. Each quantity equals 1 month.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Step 2: Apply Promo (Optional)</h3>
+                <p>If you have a promo code, type it in. Promo code TEST123 makes all months free for testing purposes.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Step 3: Pay with PayPal</h3>
+                <p>Click the PayPal button to complete your purchase securely. After payment, your dashboard will unlock automatically.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="features">
+        <h2>FAQ</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Can I pay for multiple months at once?</h3>
+                <p>Yes. Change the "Select months" number to pay for more than one month at a time.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Is my payment secure?</h3>
+                <p>All payments are handled via PayPal, ensuring full security and protection.</p>
+            </div>
+            <div class="feature-card">
+                <h3>What happens if I use TEST123?</h3>
+                <p>All premium features will unlock immediately for free for testing purposes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <p>© 2025 Sansvarg NovaLearn. All rights reserved.</p>
+        <p>
+            <a href="index.html">Home</a> | 
+            <a href="pricing.html">Pricing</a> | 
+            <a href="dashboard.html">Dashboard</a>
+        </p>
+    </footer>
+
+    <!-- ================= PAYPAL + PROMO CODE SCRIPT ================= -->
+    <script>
+        const promoInput = document.getElementById('promo');
+        const promoMsg = document.getElementById('promo-msg');
+        const monthsInput = document.getElementById('months');
+
+        function applyPromo() {
+            if(promoInput.value.toUpperCase() === 'TEST123') {
+                promoMsg.textContent = 'Promo code applied! All months are free.';
+                return true;
+            } else {
+                promoMsg.textContent = '';
+                return false;
+            }
+        }
+
+        promoInput.addEventListener('input', applyPromo);
+
+        // Render PayPal Hosted Button
+        paypal.HostedButtons({
+            hostedButtonId: "PE44VKVGLWKFA",
+            onClick: function(data, actions) {
+                if(applyPromo()) {
+                    alert('Promo code applied! Premium unlocked.');
+                    // Here, you could redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                    return actions.reject();
+                }
+            }
+        }).render('#paypal-container');
+    </script>
+
+</body>
+</html>
